@@ -35,6 +35,10 @@ Route::get('login','PageController@login')->name('loginpage');
 
 Route::get('register','PageController@register')->name('registerpage');
 
+// Backend
+
+Route::get('dashboard','BackendController@dashboardfun')->name('dashboardpage');
+
 
 
 
