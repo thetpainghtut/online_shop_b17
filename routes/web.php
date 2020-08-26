@@ -39,7 +39,4 @@ Route::get('register','PageController@register')->name('registerpage');
 
 Route::get('dashboard','BackendController@dashboardfun')->name('dashboardpage');
 
-
-
-
-
+Route::resource('items','ItemController');
