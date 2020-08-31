@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content=""/>
   <meta name="author" content="" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title> Shopules </title>
 
@@ -629,6 +630,6 @@
 
   <!-- Owl Carousel -->
   <script type="text/javascript" src="{{ asset('frontend/js/owl.carousel.js')}}"></script>
-
+  @yield('script')
 </body>
 </html>

@@ -111,16 +111,17 @@
       <div class="col-12">
         <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
                 <div class="MultiCarousel-inner">
+                    @foreach($items as $item)
                     <div class="item">
                         <div class="pad15">
-                          <img src="{{ asset('frontend/image/item/saisai_one.jpg')}}" class="img-fluid">
-                            <p class="text-truncate">Multi Item Carousel</p>
+                          <img src="{{ asset($item->photo)}}" class="img-fluid">
+                            <p class="text-truncate">{{$item->name}}</p>
                             <p class="item-price">
-                              <strike>250,000 Ks </strike> 
-                              <span class="d-block">230,000 Ks</span>
+                              <strike>{{$item->price}} Ks </strike> 
+                              <span class="d-block">{{$item->discount}} Ks</span>
                             </p>
 
-                            <div class="star-rating">
+                <div class="star-rating">
                   <ul class="list-inline">
                     <li class="list-inline-item"><i class='bx bxs-star' ></i></li>
                     <li class="list-inline-item"><i class='bx bxs-star' ></i></li>
@@ -130,11 +131,13 @@
                   </ul>
                 </div>
 
-                <a href="#" class="addtocartBtn text-decoration-none">Add to Cart</a>
+                <a href="#" class="addtocartBtn text-decoration-none" data-id="{{$item->id}}" data-name="{{$item->name}}" data-photo="{{$item->photo}}" data-price="{{$item->price}}" data-discount="{{$item->discount}}">Add to Cart</a>
 
                         </div>
                     </div>
-                    <div class="item">
+                    @endforeach
+
+                    {{-- <div class="item">
                         <div class="pad15">
                           <img src="{{ asset('frontend/image/item/saisai_two.jpg')}}" class="img-fluid">
                             <p class="text-truncate">Multi Item Carousel</p>
@@ -383,7 +386,7 @@
                         </div>
                     </div>
                     
-                </div>
+                </div> --}}
                 <button class="btn btnMain leftLst"><</button>
                 <button class="btn btnMain rightLst">></button>
             </div>
@@ -1035,4 +1038,8 @@
 
       <div class="whitespace d-xl-block d-lg-block d-md-none d-sm-none d-none"></div>
   </div>
+@endsection
+
+@section('script')
+  <script type="text/javascript" src="{{asset('frontend/js/script.js')}}"></script>
 @endsection

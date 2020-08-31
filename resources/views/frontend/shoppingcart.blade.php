@@ -115,7 +115,7 @@
             </tr>
             <tr> 
               <td colspan="5"> 
-                <textarea class="form-control" id="notes" placeholder="Any Request..."></textarea>
+                <textarea class="form-control notes" id="notes" placeholder="Any Request..."></textarea>
               </td>
               <td colspan="3">
                 <button class="btn btn-secondary btn-block mainfullbtncolor checkoutbtn"> 
@@ -146,4 +146,8 @@
     
 
   </div>
+@endsection
+
+@section('script')
+  <script type="text/javascript" src="{{asset('frontend/js/script.js')}}"></script>
 @endsection

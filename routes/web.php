@@ -35,7 +35,8 @@ Route::get('login','PageController@login')->name('loginpage');
 
 Route::get('register','PageController@register')->name('registerpage');
 
-// Backend
+// Backend---------------------------
+Route::resource('orders','OrderController');
 
 Route::get('dashboard','BackendController@dashboardfun')->name('dashboardpage');
 

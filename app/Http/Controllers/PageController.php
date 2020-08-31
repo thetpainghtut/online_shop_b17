@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Item;
 
 class PageController extends Controller
 {
   public function home($value='')
   {
-    return view('frontend.home');
+    $items = Item::all();
+    return view('frontend.home',compact('items'));
   }
 
   public function itemdetail($value='')
