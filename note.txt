@@ -12,8 +12,6 @@
 - Customer Manage
 	- Reports
 
-
-
 -orders
 	- voucherid,user_id,orderdate,status
 
@@ -49,7 +47,6 @@ Model Relationship
 	-belongsToMany
 	-pivot table
 
-
 - Homework (using backend template)
 ----------
 	- create route for dashboard page (get)
@@ -59,10 +56,34 @@ Model Relationship
 		- create method dashboardfun()
 		- call view (backend.dashboard)
 
-
 Item (CRUD)
 -----------
 create - show form , store data
 retrieve - display data (all , row)
 update - show form with old value , update data
 delete - delete data
+
+Authentication
+--------------
+- installtion
+	- nodejs (call npm in terminal)
+- Docs
+	- Security / Authentication
+- Commands
+	- composer require laravel/ui
+	- php artisan ui bootstrap --auth
+	- npm install
+	- npm run dev
+- Routes
+	- localhost:8000/login
+	- localhost:8000/register
+
+GIT
+---
+- git init
+- git add .
+- git commit -m "message"
+- git remote add origin url
+- git push -u origin master
+
+- git pull
