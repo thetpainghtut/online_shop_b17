@@ -38,7 +38,7 @@ Route::get('register','PageController@register')->name('registerpage');
 // Backend---------------------------
 Route::resource('orders','OrderController');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('role:Admin')->group(function () {
 
   Route::get('dashboard','BackendController@dashboardfun')->name('dashboardpage');
 

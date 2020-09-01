@@ -91,6 +91,29 @@ Authentication
 	- localhost:8000/login
 	- localhost:8000/register
 
+Spatie
+------
+	- composer require (3)
+	- public (5)
+	- php artisan migrate
+	- create new seeder class (RoleTableSeeder)
+	- seed this class
+	- User model -> use HasRoles
+	- app/Http/Controller/Auth/RegisterController
+		- create method -> assignRole
+	- Register middleware (app/Http/kernel.php
+		routeMiddleware)
+	- routes/web.php 
+		- role:Admin
+
+
+
+
+
+
+
+
+
 
 
 GIT
