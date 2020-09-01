@@ -38,6 +38,15 @@ Route::get('register','PageController@register')->name('registerpage');
 // Backend---------------------------
 Route::resource('orders','OrderController');
 
-Route::get('dashboard','BackendController@dashboardfun')->name('dashboardpage');
+Route::middleware('auth')->group(function () {
 
-Route::resource('items','ItemController');
+  Route::get('dashboard','BackendController@dashboardfun')->name('dashboardpage');
+
+  Route::resource('items','ItemController');
+  
+});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

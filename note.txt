@@ -67,16 +67,31 @@ Authentication
 --------------
 - installtion
 	- nodejs (call npm in terminal)
-- Docs
+
+	- windows 
+		- nodejs.org (lts)
+		
+	- linux
+		- http://heinminhtet.com/notes/laravel_install.html
+		- Step - (7 => 17)
+
+	- node --version
+	- npm -v
+
+- Laravel Docs
 	- Security / Authentication
+	
 - Commands
 	- composer require laravel/ui
 	- php artisan ui bootstrap --auth
-	- npm install
-	- npm run dev
+	- npm install (node_module)
+	- npm run dev (ready state)
+
 - Routes
 	- localhost:8000/login
 	- localhost:8000/register
+
+
 
 GIT
 ---
@@ -87,3 +102,7 @@ GIT
 - git push -u origin master
 
 - git pull
+
+
+
+
