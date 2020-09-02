@@ -76,9 +76,29 @@
             </div>
           </div>
           <div class="col-lg-4 col-10">
+            @role('Customer')
             <span classs="float-right d-xl-block d-lg-block d-md-block d-none">
-              <a href="" class="text-decoration-none loginLink"> Login </a> | <a href="" class="text-decoration-none loginLink"> Sign-up </a>
+              <a id="navbarDropdown" class="nav-link dropdown-toggle loginLink" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  {{ Auth::user()->name }}
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                      {{ __('Logout') }}
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
+              </div>
             </span>
+            @else
+            <span classs="float-right d-xl-block d-lg-block d-md-block d-none">
+              <a href="{{route('loginpage')}}" class="text-decoration-none loginLink"> Login </a> | <a href="{{route('registerpage')}}" class="text-decoration-none loginLink"> Sign-up </a>
+            </span>
+            @endrole
           </div>
         </div>
       </div>
@@ -91,13 +111,13 @@
           <i class="icofont-search"></i>
         </div>
 
-        <a href="" class="text-decoration-none d-xl-inline d-lg-inline d-md-inline d-sm-none d-none shoppingcartLink"> 
+        <a href="{{route('shoppingcartpage')}}" class="text-decoration-none d-xl-inline d-lg-inline d-md-inline d-sm-none d-none shoppingcartLink"> 
           <i class="icofont-shopping-cart"></i> 
           <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti"> 1 </span>
           <span> 4,800 Ks </span>
         </a>
 
-        <a href="" class="text-decoration-none d-xl-none d-lg-none d-md-none d-sm-inline-block d-inline-block shoppingcartLink"> 
+        <a href="{{route('shoppingcartpage')}}" class="text-decoration-none d-xl-none d-lg-none d-md-none d-sm-inline-block d-inline-block shoppingcartLink"> 
           <i class="icofont-shopping-cart"></i>
           <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti"> 1 </span>
         </a>

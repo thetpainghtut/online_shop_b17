@@ -118,9 +118,15 @@
                 <textarea class="form-control notes" id="notes" placeholder="Any Request..."></textarea>
               </td>
               <td colspan="3">
-                <button class="btn btn-secondary btn-block mainfullbtncolor checkoutbtn"> 
-                  Check Out 
-                </button>
+                @role('Customer')
+                  <button class="btn btn-secondary btn-block mainfullbtncolor checkoutbtn"> 
+                    Check Out 
+                  </button>
+                @else
+                  <a href="{{route('loginpage')}}" class="btn btn-secondary btn-block mainfullbtncolor"> 
+                    Login To Check Out 
+                  </a>
+                @endrole
               </td>
             </tr>
           </tfoot>

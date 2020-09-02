@@ -30,12 +30,12 @@ Route::get('filteritems','PageController@filteritems')->name('filteritemspage');
 
 Route::get('shoppingcart','PageController@shoppingcart')->name('shoppingcartpage');
 
-Route::get('login','PageController@login')->name('loginpage');
+Route::get('loginform','PageController@login')->name('loginpage');
 
-Route::get('register','PageController@register')->name('registerpage');
+Route::get('registerform','PageController@register')->name('registerpage');
 
 // Backend---------------------------
-Route::resource('orders','OrderController');
+Route::resource('orders','OrderController'); // 7 => GET/POST/PUT/DELETE
 
 Route::middleware('role:Admin')->group(function () {
 

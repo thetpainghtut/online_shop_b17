@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
     public function __construct($value='')
     {
-        $this->middleware('role:Admin');
+        $this->middleware('role:Admin')->only('index','show');
+        $this->middleware('role:Customer')->only('store');
     }
     /**
      * Display a listing of the resource.
@@ -53,7 +55,7 @@ class OrderController extends Controller
         $order = new Order;
         $order->voucherno = uniqid(); // 8880598734
         $order->orderdate = date('Y-m-d');
-        $order->user_id = 1; // auth id (1 => users table)
+        $order->user_id = Auth::id(); // auth id (1 => users table)
         $order->note = $request->notes;
         $order->total = $total;
         $order->save(); // only saved into order table
