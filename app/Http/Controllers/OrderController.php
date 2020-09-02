@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +18,17 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::all();
+        $date1 = $request->sdate;
+        $date2 = $request->edate;
+
+        if ($request->sdate && $request->edate) {
+            $orders = Order::whereBetween('orderdate', [new Carbon($date1), new Carbon($date2)])->where('status',0)->get();
+        }else{
+            $orders = Order::all();
+        }
+
         return view('backend.orders.index',compact('orders'));
     }
 

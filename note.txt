@@ -116,15 +116,63 @@ Spatie
 
 
 
-GIT
+
+
+
+
+
+
+GIT (upload project into your repo)
 ---
-- git init
+- git init (will create .git folder)
 - git add .
-- git commit -m "message"
-- git remote add origin url
+
+- git config —global user.name “mgmg”
+- git config —global user.email “mgmg@gmail.com”
+
+- git commit -m "first commit"
+- git remote add origin https://github.com/thetpainghtut/batch_17_git.git
 - git push -u origin master
 
+--------------------------------------------------------- New File Added/Edit----
+
+- git status
+- git add .
+- git commit -m "added something"
+- git push -u origin master
+
+
+GIT (clone)
+---
+- git clone url
+- cd folder
+- cp .env.example .env (-)
+- composer install
+- php artisan key:generate
+	(.env - database config)
+- php artisan migrate
+- php artisan db:seed
+- npm install
+- npm run dev
+
+GIT (team)
+---
 - git pull
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
