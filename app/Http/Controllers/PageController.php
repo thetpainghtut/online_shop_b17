@@ -48,6 +48,12 @@ class PageController extends Controller
     return view('frontend.itemsbybrand',compact('brand'));
   }
 
+  public function itemsbycategory($id)
+  {
+    $category = Category::find($id);
+    return view('frontend.itemsbycategory',compact('category'));
+  }
+
   public function login($value='')
   {
     return view('frontend.login');

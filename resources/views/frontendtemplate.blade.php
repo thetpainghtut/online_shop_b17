@@ -53,11 +53,13 @@
         <span class="d-xl-none d-lg-none d-md-inline d-sm-inline d-inline  p-1 navslidemenu">
           <i class="icofont-navigation-menu"></i>
         </span>
-        <img src="{{ asset('frontend/logo/logo_big.jpg')}}" class="img-fluid d-xl-inline d-lg-inline d-md-none d-sm-none d-none">
+        <a href="{{route('homepage')}}">
+          <img src="{{ asset('frontend/logo/logo_big.jpg')}}" class="img-fluid d-xl-inline d-lg-inline d-md-none d-sm-none d-none">
 
-        <img src="{{ asset('frontend/logo/logo_med.jpg')}}" class="img-fluid d-xl-none d-lg-none d-md-inline d-sm-none d-none" style="width: 100px">
+          <img src="{{ asset('frontend/logo/logo_med.jpg')}}" class="img-fluid d-xl-none d-lg-none d-md-inline d-sm-none d-none" style="width: 100px">
 
-        <img src="{{ asset('frontend/logo/logo.jpg')}}" class="img-fluid d-xl-none d-lg-none d-md-none d-sm-inline d-inline pl-2" style="width: 30px">
+          <img src="{{ asset('frontend/logo/logo.jpg')}}" class="img-fluid d-xl-none d-lg-none d-md-none d-sm-inline d-inline pl-2" style="width: 30px">
+        </a>
       </div>
       
       <!-- Search Bar -->
@@ -113,18 +115,18 @@
 
         <a href="{{route('shoppingcartpage')}}" class="text-decoration-none d-xl-inline d-lg-inline d-md-inline d-sm-none d-none shoppingcartLink"> 
           <i class="icofont-shopping-cart"></i> 
-          <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti"> 1 </span>
-          <span> 4,800 Ks </span>
+          <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti"></span>
+          <span class="cartTotal"></span> Ks
         </a>
 
         <a href="{{route('shoppingcartpage')}}" class="text-decoration-none d-xl-none d-lg-none d-md-none d-sm-inline-block d-inline-block shoppingcartLink"> 
           <i class="icofont-shopping-cart"></i>
-          <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti"> 1 </span>
+          <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti"></span>
         </a>
 
         <!-- App Download -->
 
-        <a href=""><img src="{{ asset('frontend/image/download.png')}}" class="img-fluid d-xl-inline d-lg-inline d-md-none d-sm-none d-none" style="width: 150px"></a>
+        <a href="#"><img src="{{ asset('frontend/image/download.png')}}" class="img-fluid d-xl-inline d-lg-inline d-md-none d-sm-none d-none" style="width: 150px"></a>
       </div>
     </div>
   </div>
@@ -384,8 +386,6 @@
               <div class="input-group-append">
                 <button class="btn btn-secondary subscribeBtn" type="button" id="button-addon2"> Subscribe </button>
               </div>
-
-
           </div>
         </form>
       </div>
@@ -414,6 +414,7 @@
 
   <!-- Owl Carousel -->
   <script type="text/javascript" src="{{ asset('frontend/js/owl.carousel.js')}}"></script>
-  @yield('script')
+
+  <script type="text/javascript" src="{{asset('frontend/js/script.js')}}"></script>
 </body>
 </html>

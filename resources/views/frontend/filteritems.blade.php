@@ -17,7 +17,7 @@
             <a href="{{route('homepage')}}" class="text-decoration-none secondarycolor"> Home </a>
           </li>
           <li class="breadcrumb-item">
-            <a href="#" class="text-decoration-none secondarycolor"> {{$subcategory->category->name}} </a>
+            <a href="{{route('itemsbycategorypage',$subcategory->category->id)}}" class="text-decoration-none secondarycolor"> {{$subcategory->category->name}} </a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
             {{$subcategory->name}}
@@ -45,28 +45,22 @@
             @foreach($subcategory->items as $item)
               <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                 <div class="card pad15 mb-3">
+                  <a href="{{route('itemdetailpage',$item->id)}}" class="text-dark text-decoration-none">
                     <img src="{{ asset($item->photo)}}" class="card-img-top" alt="...">
                     
                     <div class="card-body text-center">
                       <h5 class="card-title text-truncate">{{$item->name}}</h5>
                       
-                      <p class="item-price">
-                        <strike>{{$item->price}} Ks </strike> 
-                        <span class="d-block">{{$item->discount}} Ks</span>
+                      <p class="item-price mb-2">
+                        @php $discount = $item->price-($item->price*($item->discount/100)) @endphp
+                        <span class="d-block">Ks {{number_format($discount)}}</span>
+                        <small><strike class="mr-2">{{number_format($item->price)}} Ks </strike>  -{{$item->discount}}%</small>
                       </p>
-
-                      <div class="star-rating">
-                        <ul class="list-inline">
-                          <li class="list-inline-item"><i class='bx bxs-star' ></i></li>
-                          <li class="list-inline-item"><i class='bx bxs-star' ></i></li>
-                          <li class="list-inline-item"><i class='bx bxs-star' ></i></li>
-                          <li class="list-inline-item"><i class='bx bxs-star' ></i></li>
-                          <li class="list-inline-item"><i class='bx bxs-star-half' ></i></li>
-                        </ul>
-                      </div>
-
-                      <a href="#" class="addtocartBtn text-decoration-none">Add to Cart</a>
                     </div>
+                  </a>
+                  <div class="card-footer text-center">
+                    <button class="addtocartBtn text-decoration-none" data-id="{{$item->id}}" data-name="{{$item->name}}" data-photo="{{$item->photo}}" data-price="{{$item->price}}" data-discount="{{$item->discount}}" data-codeno="{{$item->codeno}}">Add to Cart</button>
+                  </div>
                 </div>
               </div>
             @endforeach

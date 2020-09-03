@@ -26,6 +26,8 @@ Route::get('promotions','PageController@promotions')->name('promotionspage');
 
 Route::get('itemsbybrand/{id}','PageController@itemsbybrand')->name('itemsbybrandpage');
 
+Route::get('itemsbycategory/{id}','PageController@itemsbycategory')->name('itemsbycategorypage');
+
 Route::get('filteritems/{id}','PageController@filteritems')->name('filteritemspage');
 
 Route::get('shoppingcart','PageController@shoppingcart')->name('shoppingcartpage');

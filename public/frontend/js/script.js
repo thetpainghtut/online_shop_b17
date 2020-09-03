@@ -1,9 +1,6 @@
 $(document).ready(function(){
 
-  // $('#result').delay(10000).load(location.href);
-
   getData();
-  count();
 
   $.ajaxSetup({
     headers: {
@@ -11,64 +8,51 @@ $(document).ready(function(){
     }
   });
 
-  $('.view_detail').click(function(){
-    var id = $(this).data('id');
-    var name = $(this).data('name');
-    var photo = $(this).data('photo');
-    var price = $(this).data('price');
-    var discount = $(this).data('discount');
-    var brand = $(this).data('brand');
-    var subcategory = $(this).data('subcategory');
-    var description = $(this).data('description');
-
-    $(".pimg").attr('src',"backend/"+photo);
-    $(".pprice").html("Item Price: "+price);
-    $(".pbrand").html("Item Brand: "+brand);
-    $(".psubcategory").html("Item Category: "+subcategory);
-    $(".pdiscount").html("Item Discount: "+discount);
-    $(".pdescription").html("Description: </br>"+description);
-
-    $(".cart_data").data('id',$(this).data('id'));
-    $(".cart_data").data('name',$(this).data('name'));
-    $(".cart_data").data('photo',$(this).data('photo'));
-    $(".cart_data").data('price',$(this).data('price'));
-    $(".cart_data").data('discount',$(this).data('discount'));
-    $(".cart_data").data('brand',$(this).data('brand'));
-    $(".cart_data").data('subcategory',$(this).data('subcategory'));
-    $(".cart_data").data('description',$(this).data('description'));
-
-    $('#product_detail').modal('show');
-
-  });
-
   // Count
+  count();
+
   function count(){
     var shopString = localStorage.getItem("heinshop");
     if (shopString) {
       var shopArray = JSON.parse(shopString);
       if (shopArray!=0) {
-        var count=shopArray.length;
-        $("#item_count").html(count);
-      }else {
-        $("#item_count").html(0);  
-      }
+        var count = shopArray.length;
 
+        var total = 0;
+
+        $.each(shopArray,function (i,v) {
+          if (v.discount>0) {
+            var price = v.price-(v.price*(v.discount/100));
+            var old_price= v.price;
+          }else{
+            var price = v.price;
+            var old_price = v.price;
+          }
+          total +=(price*v.qty);
+        })
+
+        $(".cartNoti").html(count);
+        $(".cartTotal").html(formatNumber(total));
+
+      }else {
+        $(".cartNoti").html(0);
+        $(".cartTotal").html(0);    
+      }
     }else {
-      $("#item_count").html(0);  
+      $(".cartNoti").html(0);
+      $(".cartTotal").html(0);    
     }
   };
 
-
   // Add To Cart
   $(".addtocartBtn").on('click',function(e){
-    // alert('ok');
     var item_qty=parseInt($('#qty').val());
     var id = $(this).data('id');
     var name = $(this).data('name');
     var photo = $(this).data('photo');
     var price = $(this).data('price');
     var discount = $(this).data('discount');
-    alert('id => '+id);
+    var codeno = $(this).data('codeno');
     var qty=1;
 
     if (item_qty) {
@@ -77,6 +61,7 @@ $(document).ready(function(){
 
     var shop_item = {
       id:id,
+      codeno:codeno,
       name:name,
       price:price,
       discount:discount,
@@ -111,25 +96,7 @@ $(document).ready(function(){
 
     var shopData = JSON.stringify(shopArray);
     localStorage.setItem("heinshop", shopData);
-    
-    // $.ajaxSetup ({
-    //  cache: false
-    // });
-    // var ajax_load = "<img src='http://automobiles.honda.com/images/current-offers/small-loading.gif' alt='loading...' />";
-
-   //    var loadUrl = window.location.href;
-   //    console.log(loadUrl);
-   //    $(this).load(loadUrl);
-    // $('#product_detail').modal('hide');
-    // $(".modal-backdrop").remove();
-
-
-   // location.reload();
-
-
-
     count();
-
   });
 
   // Show to Table Data
@@ -137,54 +104,89 @@ $(document).ready(function(){
     var shopString = localStorage.getItem("heinshop");
     if (shopString) {
       var shopArray = JSON.parse(shopString);
+      if (shopArray.length > 0) {
+        var html='';
+        var no=1;
+        var total=0;
+        $.each(shopArray,function(i,v){
+          var photo = v.photo;
+          var name = v.name;
+          var codeno = v.codeno;
+          var unit_price = v.price;
+          var discount = v.discount;
+          var qty = v.qty;
+          if (discount>0) {
+            var price = unit_price-(unit_price*(discount/100));
+            var old_price= unit_price;
+          }else{
+            var price = unit_price;
+            var old_price = unit_price;
+          }
 
-      var html='';
-      var no=1;
-      var total=0;
-      $.each(shopArray,function(i,v){
-        var photo = v.photo;
-        var name = v.name;
-        var unit_price = v.price;
-        var discount = v.discount;
-        var qty = v.qty;
-        if (discount) {
-          var price_show=discount+'<del class="d-block">'+unit_price+'</del>';
-          var price = discount;
-        }else{
-          var price_show = unit_price;
-          var price = unit_price;
-        }
+          var subtotal = price*qty;
 
-        html += `<tr>
-            <td>${no++}</td>
-            <td class="w-25"><img src="${photo}" class="w-25"></td>
-            <td>${name}</td>
-            <td>${price_show}</td>
-            <td><button class="btn btn-light btn-sm min" data-item_i="${i}">-</button> ${qty} <button class="btn btn-light btn-sm max" data-item_i="${i}">+</button></td>
-            <td>${price*qty}</td>
+          html +=`<tr>
+                <td>
+                  <button class="btn btn-outline-danger remove btn-sm" style="border-radius: 50%"> 
+                    <i class="icofont-close-line"></i> 
+                  </button> 
+                </td>
+                <td> 
+                  <img src="${photo}" class="cartImg">           
+                </td>
+                <td> 
+                  <p> ${name} </p>
+                  <p> ${codeno} </p>`;
 
-          </tr>`; 
+          html +=`<p> <strong>discount</strong>: ${discount}%</p>`;
+                  
+          html +=`</td>
+                <td class="text-center">
+                  <button class="btn btn-outline-secondary max" data-item_i="${i}"> 
+                    <i class="icofont-plus"></i> 
+                  </button>
+                
+                  <p class="mt-3"> ${qty} </p>
+                
+                  <button class="btn btn-outline-secondary min" data-item_i="${i}"> 
+                    <i class="icofont-minus"></i>
+                  </button>
+                </td>
+                <td>
+                  <p class="text-danger"> 
+                    ${formatNumber(price)} Ks
+                  </p>`;
 
-          total += price*qty;
-      });
+          if(discount>0){
+            html  +=`<p class="font-weight-lighter"> 
+                  <del> ${formatNumber(old_price)} Ks </del> </p>`;
+          }
 
-      html+=`<tr>
-        <td colspan="5" class="text-center">Total</td>
-        <td>${total}</td>
-        </tr>`
+          html  +=`</td>
+                <td>
+                  ${formatNumber(subtotal)} Ks
+                </td>
+              </tr>`;
 
-      $("tbody").html(html);
-      $(".total").val(total);
-
+            total += subtotal;
+        });
+        $('.shoppingcart').show();
+        $('.noneshoppingcart_div').hide();
+        $("#shoppingcart_table").html(html);
+        $(".total").html(formatNumber(total));
+      }else{
+        $('.shoppingcart').hide();
+        $('.noneshoppingcart_div').show();
+      }
     }else{
       html='';
-      $("tbody").html(html);
+      $('.shoppingcart').hide();
+      $('.noneshoppingcart_div').show();
+      $("#shoppingcart_table").html(html);
     }
-
   }
 
-
-
+  // puls btn
   $("tbody").on('click','.max',function(){
 
     var item_i = $(this).data('item_i');
@@ -198,18 +200,17 @@ $(document).ready(function(){
         if (item_i==i) {
           v.qty++;
         }
-
       })
 
       var shopData=JSON.stringify(shopArray);
       localStorage.setItem("heinshop",shopData);
       getData();
       count();
-
     }
 
   });
 
+  // minus btn
   $("tbody").on('click','.min',function(){
     var item_i = $(this).data('item_i');
 
@@ -232,33 +233,35 @@ $(document).ready(function(){
       localStorage.setItem("heinshop",shopData);
       getData();
       count();
-
     }
 
-  })
-
+  });
 
   // For But Now
   $('.checkoutbtn').on('click',function(){
     var notes = $('.notes').val();
-    // var total = $('.total').val();
-    var shopString = localStorage.getItem("heinshop"); // string
-    if (shopString) {
-      // var shopArray = JSON.parse(shopString);
-
-      $.post('/orders',{shop_data:shopString,notes:notes},function(response){
-        if (response) {
-          alert(response);
-          localStorage.clear();
-          getData();
-          location.href="/";
-        }
-      })
-
+    if (notes == '') {
+      alert('Please fill request message!');
+    }else{
+      // var total = $('.total').val();
+      var shopString = localStorage.getItem("heinshop"); // string
+      if (shopString) {
+        // var shopArray = JSON.parse(shopString);
+        $.post('/orders',{shop_data:shopString,notes:notes},function(response){
+          if (response) {
+            alert(response);
+            localStorage.clear();
+            getData();
+            location.href="/";
+          }
+        })
+      }
     }
 
-  })
+  });
 
-
+  function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
 
 })
