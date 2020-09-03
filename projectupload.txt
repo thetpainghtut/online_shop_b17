@@ -1,0 +1,28 @@
+=> create subdomain
+=> login (ssh - terminal)
+=> ssh -p 7822 aungthuraoo@aungthuraoo.me
+=> enter password
+
+
+=> cd subdomain
+=> git clone url
+=> cd folder (---)
+=> cp .env.example .env
+=> composer install (notice: php version)
+=> php artisan key:generate
+
+=> .env
+  - database
+  - username
+  - password
+
+=> php artisan migrate
+=> php artisan db:seed
+
+
+=> onlineshop.aungthuraoo.me/foldername/public
+
+=> create .htaccess into subdomain
+
+
+=> git pull

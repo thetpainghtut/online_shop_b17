@@ -160,6 +160,61 @@ GIT (team)
 - git pull
 
 
+User Management
+---------------
+users
+	- name
+	- email
+	- password
+
+teachers
+	- user_id
+	- 
+
+parents
+	- user_id
+
+students
+	- user_id
+
+model_has_role
+--------------
+ 	- model_id
+
+
+TODO
+-----
+ => Home
+ 		- items , brands , categories , subcategories
+ => filter
+ 		- 4 (addtocart)
+ => shopping cart ( total amount )
+
+ => delete (try)
+ => update (select -> auto selected)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -20,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','PageController@home')->name('homepage');
 
-Route::get('detail','PageController@itemdetail')->name('itemdetailpage');
+Route::get('detail/{id}','PageController@itemdetail')->name('itemdetailpage');
 
 Route::get('promotions','PageController@promotions')->name('promotionspage');
 
-Route::get('itemsbybrand','PageController@itemsbybrand')->name('itemsbybrandpage');
+Route::get('itemsbybrand/{id}','PageController@itemsbybrand')->name('itemsbybrandpage');
 
 Route::get('filteritems','PageController@filteritems')->name('filteritemspage');
 

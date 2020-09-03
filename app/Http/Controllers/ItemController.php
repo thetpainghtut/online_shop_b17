@@ -57,6 +57,8 @@ class ItemController extends Controller
         "subcategory" => 'required'
     ]);
 
+    // dd($request->photo);
+    
     // If include file, upload file
     $imageName = time().'.'.$request->photo->extension();
 

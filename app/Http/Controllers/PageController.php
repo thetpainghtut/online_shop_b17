@@ -4,18 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item;
+use App\Brand;
+use App\Category;
 
 class PageController extends Controller
 {
   public function home($value='')
   {
-    $items = Item::all();
-    return view('frontend.home',compact('items'));
+    $discountItems = Item::where('discount','>',0)->take(6)->get();
+    $brands = Brand::take(6)->get();
+    $categories = Category::take(8)->get();
+
+    return view('frontend.home',compact('discountItems','brands','categories'));
   }
 
-  public function itemdetail($value='')
+  public function itemdetail($id)
   {
-    return view('frontend.detail');
+    $item = Item::find($id);
+    return view('frontend.detail',compact('item'));
   }
 
   public function promotions($value='')
@@ -33,9 +39,10 @@ class PageController extends Controller
     return view('frontend.shoppingcart');
   }
 
-  public function itemsbybrand($value='')
+  public function itemsbybrand($id)
   {
-    return view('frontend.itemsbybrand');
+    $brand = Brand::find($id);
+    return view('frontend.itemsbybrand',compact('brand'));
   }
 
   public function login($value='')
