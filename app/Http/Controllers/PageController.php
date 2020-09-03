@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Item;
 use App\Brand;
 use App\Category;
+use App\Subcategory;
 
 class PageController extends Controller
 {
@@ -29,9 +30,11 @@ class PageController extends Controller
     return view('frontend.promotions');
   }
 
-  public function filteritems($value='')
+  public function filteritems($id)
   {
-    return view('frontend.filteritems');
+    $subcategory = Subcategory::find($id);
+    $subcategory->setRelation('items', $subcategory->items()->paginate(3));
+    return view('frontend.filteritems',compact('subcategory'));
   }
 
   public function shoppingcart($value='')

@@ -154,18 +154,20 @@
                         {{$category->name}}
                       </h6>
                       @foreach($category->subcategories as $subcategory)
-                        <li><a class="dropdown-item" href="#">{{$subcategory->name}}</a></li>
+                        <li><a class="dropdown-item" href="{{route('filteritemspage',$subcategory->id)}}">{{$subcategory->name}}</a></li>
                       @endforeach
                     </ul>
                   </li>
-                  <div class="dropdown-divider"></div>
+                  @if (!$loop->last)
+                    <div class="dropdown-divider"></div>
+                  @endif
                 @endforeach
               </ul>
             </div>
       </div>
 
       <div class="col-3">
-        <a href="" class="text-decoration-none text-dark font-weight-bold"> Promotions </a>
+        <a href="{{route('promotionspage')}}" class="text-decoration-none text-dark font-weight-bold"> Promotions </a>
       </div>
       <div class="col-3">
         <div class="hov-dropdown d-inline-block">
