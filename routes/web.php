@@ -44,6 +44,8 @@ Route::middleware('role:Admin')->group(function () {
   Route::get('dashboard','BackendController@dashboardfun')->name('dashboardpage');
 
   Route::resource('items','ItemController');
+
+  Route::resource('videos','VideoController');
   
 });
 
