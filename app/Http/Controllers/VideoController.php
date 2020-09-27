@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Video;
 use Illuminate\Http\Request;
+use Toolkito\Larasap\SendTo;
 
 class VideoController extends Controller
 {
@@ -36,6 +37,17 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
+        
+
+        SendTo::Facebook(
+            'link',
+            [
+                'link' => 'http://heinminhtet.com',
+                'message' => 'Hein Min Htet'
+            ]
+        );
+        dd('Youe message send successfully!!');
+
         // dd(ini_get('post_max_size'));
         // Validation
         $request->validate([
@@ -48,9 +60,20 @@ class VideoController extends Controller
             $fileName = time().'_'.$request->video->getClientOriginalName();
             $filePath = $request->file('video')->storeAs('videos', $fileName, 'public');
 
+            $path = '/storage/'.$filePath;
+
             $video->name = time().'_'.$request->video->getClientOriginalName();
-            $video->file_path = '/storage/'.$filePath;
+            $video->file_path = $path;
             $video->save();
+
+            SendTo::Facebook(
+                'video',
+                [
+                    'video' => public_path($path),
+                    'title' => 'Let Me Be Your Lover',
+                    'description' => 'Let Me Be Your Lover - Enrique Iglesias'
+                ]
+            );
 
             return back()
             ->with('success','File has been uploaded.')
@@ -66,7 +89,7 @@ class VideoController extends Controller
      */
     public function show(Video $video)
     {
-        //
+        return view('backend.videos.show',compact('video'));
     }
 
     /**

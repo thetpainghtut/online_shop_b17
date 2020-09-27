@@ -46,6 +46,9 @@ Route::middleware('role:Admin')->group(function () {
   Route::resource('items','ItemController');
 
   Route::resource('videos','VideoController');
+
+  // Send video to Facebook Route
+  // Route::get('send-video-to-facebook', 'SocialSharingController@sendVideoToFacebook');
   
 });
 

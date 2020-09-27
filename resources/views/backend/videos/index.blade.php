@@ -29,7 +29,7 @@
               <td>{{$video->name}}</td>
               <td>{{$video->file_path}}</td>
               <td>
-                <a href="{{asset($video->file_path)}}" class="btn btn-primary" target="_blank">Show File</a>
+                <a href="{{route('videos.show',$video->id)}}" class="btn btn-primary" target="_blank">Show File</a>
               </td>
             </tr>
             @endforeach
