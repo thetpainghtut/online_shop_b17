@@ -20,6 +20,45 @@
 
   <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
 
+  {{-- Summernote --}}
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
+  {{-- Datatable --}}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.css"/>
+
+  {{-- Mapbox --}}
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+    .marker {
+      background-image: url('/images/point.png');
+      background-repeat:no-repeat;
+      background-size:100%;
+      width: 40px;
+      height: 100px;
+      cursor: pointer;
+    }
+
+    .mapboxgl-popup {
+      max-width: 400px;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+
+    #info {
+      display: block;
+      position: relative;
+      margin: 0px auto;
+      width: 50%;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      font-size: 12px;
+      text-align: center;
+      color: #222;
+      background: #fff;
+    }
+  </style>
 </head>
 
 <body id="page-top">
@@ -128,6 +167,27 @@
         <a class="nav-link" href="{{route('orders.index')}}">
           <i class="fas fa-fw fa-table"></i>
           <span>Orders</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('videos.index')}}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Videos / Facebook</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('posts.index')}}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Summernote</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('maps.index')}}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Map</span></a>
       </li>
 
       <!-- Divider -->
@@ -460,6 +520,7 @@
     });
   </script>
 
+  @yield('script')
 </body>
 
 </html>

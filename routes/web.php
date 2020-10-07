@@ -45,11 +45,17 @@ Route::middleware('role:Admin')->group(function () {
 
   Route::resource('items','ItemController');
 
+  // testing video, auto post facebook
   Route::resource('videos','VideoController');
 
   // Send video to Facebook Route
   // Route::get('send-video-to-facebook', 'SocialSharingController@sendVideoToFacebook');
   
+  // testing summernote image errors
+  Route::resource('posts','PostController');
+
+  // testing map
+  Route::resource('maps','MapController');
 });
 
 Auth::routes();
