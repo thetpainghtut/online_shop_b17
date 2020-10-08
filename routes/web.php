@@ -45,6 +45,12 @@ Route::middleware('role:Admin')->group(function () {
 
   Route::resource('items','ItemController');
 
+  // testing model filter
+  Route::resource('stocks','StockController');
+  Route::get('getItemInfo','ItemController@getItemInfo')->name('getItemInfo');
+  Route::resource('sales','SaleController');
+  Route::get('getAllItem','SaleController@getAllItem')->name('getAllItem');
+
   // testing video, auto post facebook
   Route::resource('videos','VideoController');
 
@@ -56,6 +62,8 @@ Route::middleware('role:Admin')->group(function () {
 
   // testing map
   Route::resource('maps','MapController');
+
+  Route::resource('brands','BrandController');
 });
 
 Auth::routes();

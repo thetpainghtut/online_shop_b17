@@ -29,7 +29,11 @@
         					<td>{{$i++}}</td>
         					<td>{{$item->codeno}}</td>
         					<td>{{$item->name}}</td>
-        					<td>{{$item->price}} MMK</td>
+                  @if($item->stocks->last())
+        					  <td>{{$item->stocks->last()->price}} MMK</td>
+                  @else
+                    <td>{{$item->price}} MMK</td>
+                  @endif
         					<td>
         						<a href="{{route('items.show',$item->id)}}" class="btn btn-primary">Detail</a>
         						<a href="{{route('items.edit',$item->id)}}" class="btn btn-warning">Edit</a>

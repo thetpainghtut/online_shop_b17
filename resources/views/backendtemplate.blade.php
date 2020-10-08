@@ -162,6 +162,20 @@
           <span>Items</span></a>
       </li>
 
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('stocks.index')}}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Stocks</span></a>
+      </li>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('sales.index')}}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Sale</span></a>
+      </li>
+
       <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="{{route('orders.index')}}">
@@ -189,6 +203,15 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Map</span></a>
       </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('brands.index')}}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Brands</span></a>
+      </li>
+
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

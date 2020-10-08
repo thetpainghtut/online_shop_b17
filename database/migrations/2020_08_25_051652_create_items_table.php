@@ -25,7 +25,7 @@ class CreateItemsTable extends Migration
             $table->unsignedBigInteger('subcategory_id');
             $table->unsignedBigInteger('brand_id');
 
-             // relationship ချိတ်ဆက်ပုံ 
+            // relationship ချိတ်ဆက်ပုံ 
             $table->foreign('subcategory_id')
                   ->references('id')->on('subcategories')
                   ->onDelete('cascade'); 

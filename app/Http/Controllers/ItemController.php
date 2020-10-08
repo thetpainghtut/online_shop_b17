@@ -166,4 +166,10 @@ class ItemController extends Controller
         $item->delete();
         return redirect()->route('items.index');
     }
+
+    public function getItemInfo(Request $request)
+    {
+        $item = Item::where('codeno',$request->codeno)->first();
+        return $item;
+    }
 }

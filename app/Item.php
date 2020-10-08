@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    protected $fillable = [
-        'codeno', 'name', 'photo', 'price', 'discount', 'description', 'subcategory_id', 'brand_id',
-    ];
+  protected $fillable = [
+    'codeno', 'name', 'photo', 'price', 'discount', 'description', 'subcategory_id', 'brand_id',
+  ];
 
   public function brand($value='')
   {
@@ -19,4 +19,10 @@ class Item extends Model
   {
   	return $this->belongsTo('App\Subcategory');
   }
+
+  public function stocks($value='')
+  {
+    return $this->hasMany('App\Stock');
+  }
+
 }
