@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Brand;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -13,7 +13,11 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::take(3)->get();
+        // $brands = Brand::all();
+
+        // dd($brands);
+        return view('backend.brands.index',compact('brands'));
     }
 
     /**

@@ -63,6 +63,7 @@ Route::middleware('role:Admin')->group(function () {
   // testing map
   Route::resource('maps','MapController');
 
+  // testing render dynamic data blade component with ajax search
   Route::resource('brands','BrandController');
 });
 
