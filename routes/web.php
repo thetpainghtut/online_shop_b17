@@ -65,6 +65,9 @@ Route::middleware('role:Admin')->group(function () {
 
   // testing render dynamic data blade component with ajax search
   Route::resource('brands','BrandController');
+
+  // testing for two words table name and model
+  Route::resource('testings','TestingController');
 });
 
 Auth::routes();
