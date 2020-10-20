@@ -68,6 +68,20 @@ Route::middleware('role:Admin')->group(function () {
 
   // testing for two words table name and model
   Route::resource('testings','TestingController');
+
+  // Required Parameters & optional parameter with ?
+  Route::get('posts/{post}/comments/{comment?}', function ($postId, $commentId=5) {
+      return $postId.'=>'.$commentId;
+  });
+
+  // View Route
+  Route::view('view','myview',['name'=>'Taylor']);
+
+  // Encoded Forward Slashes (/ကို value တစ်ခုအနေနဲဲ့)
+  Route::get('search/{search}', function ($search) {
+    return $search;
+  })->where('search', '.*');
+
 });
 
 Auth::routes();
