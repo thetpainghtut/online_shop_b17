@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,7 +83,6 @@ Route::middleware('role:Admin')->group(function () {
   Route::get('search/{search}', function ($search) {
     return $search;
   })->where('search', '.*');
-
 });
 
 Auth::routes();
